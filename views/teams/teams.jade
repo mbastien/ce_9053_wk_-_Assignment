@@ -1,0 +1,8 @@
+extends ../layout
+block content
+    .container
+        h1 Teams
+        ul.list-group
+            for team in teams
+                li.list-group-item
+                    a(href="/teams/#{team._id}")= team.name

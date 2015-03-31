@@ -10,21 +10,10 @@ app.set("view engine", "jade"); // prevent Error: No default engine
 
 var tabs = [
     {title : "Home", name : ""},
-    {title : "People", name : "people"},
-    {title : "Things", name : "things"},
+    {title : "Drivers", name : "drivers"},
+    {title : "Teams", name : "teams"},
 ];
 
-// var things = [
-//     {id : 1, name : "Rock"},
-//     {id : 2, name : "Paper"},
-//     {id : 3, name : "Scissors"}
-// ];
-
-// var people = [
-//     {id : 1, name : "Larry"},
-//     {id : 2, name : "Curly"},
-//     {id : 3, name : "Moe"}
-// ];
 
 app.locals.pretty = true; // make source pretty
 
@@ -34,7 +23,7 @@ app.use(function(req, res, next){
         res.locals.data = _data;
         return next();
     }
-    fs.readFile("data/data.js", function(err, dataStream){
+    fs.readFile("data/f1_data.js", function(err, dataStream){
         if(err){
             return next(err);
         };
@@ -50,16 +39,16 @@ app.use(function(req, res, next){
     });
 });
 
-var thingsRouter = express.Router();
+var teamsRouter = express.Router();
 
-app.use("/things", thingsRouter);
+app.use("/teams", teamsRouter);
 
 app.get("/", function(req, res){ // request, response
     res.render("index", {tabs : tabs, selected : "Home"});
     
 });
 
-thingsRouter.get("/", function(req, res, next){ // request, response
+teamsRouter.get("/", function(req, res, next){ // request, response
     
     // fs.readFile("data/data.js", function(err, dataStream){
     //     if(err){
@@ -68,7 +57,7 @@ thingsRouter.get("/", function(req, res, next){ // request, response
         try{
             // var data = JSON.parse(dataStream.toString());
             // console.log(data);
-            res.render("things/things", { things : res.locals.data.things, tabs : tabs, selected : "Things"}); 
+            res.render("teams/teams", { teams : res.locals.data.teams, tabs : tabs, selected : "Teams"}); 
         } catch(e) {
             next(e);
         }
@@ -81,9 +70,9 @@ app.use(function(req, res, next){
     next();
 });
 
-thingsRouter.get("/:id", function(req, res){ // request, response
-    var thing = _.find(res.locals.data.things, function(thing){
-        return thing.id == req.params.id;
+teamsRouter.get("/:id", function(req, res){ // request, response
+    var team = _.find(res.locals.data.teams, function(team){
+        return team._id == req.params.id;
     });
     // for(var i = 0; i < res.locals.data.things.length; i++){
     //     if(req.params.id == res.locals.data.things[i].id){
@@ -91,22 +80,22 @@ thingsRouter.get("/:id", function(req, res){ // request, response
     //         break;
     //     };
     // };
-    res.render("things/thing", { thing : thing, tabs : tabs, selected : "Things"});
+    res.render("teams/team", { team : team, tabs : tabs, selected : "Teams"});
     
 });
 
-app.get("/people", function(req, res){ // request, response
-    console.log("received request : " + req);
+app.get("/drivers", function(req, res){ // request, response
+//    console.log("received request : " + req);
     //res.send("<html><body><h1>hello world.  rand = " + Math.random() + "</h1></body></html>");
-    res.render("people/people", { things : res.locals.data.people, tabs : tabs, selected : "People"});
+    res.render("drivers/drivers", { drivers : res.locals.data.drivers, tabs : tabs, selected : "Drivers"});
     
 });
 
-app.get("/people/:id", function(req, res){ // request, response
-    var person = _.find(res.locals.data.people, function(person){
-        return person.id == req.params.id;
+app.get("/drivers/:id", function(req, res){ // request, response
+    var driver = _.find(res.locals.data.drivers, function(driver){
+        return driver._id == req.params.id;
     });
-    res.render("people/person", { thing : person, tabs : tabs, selected : "People"});
+    res.render("drivers/driver", { driver : driver, tabs : tabs, selected : "Drivers"});
     
 });
 

@@ -1,0 +1,8 @@
+extends ../layout
+block content
+    .container
+        h1 Drivers
+        ul.list-group
+            for driver in drivers
+                li.list-group-item
+                    a(href="/drivers/#{driver._id}")= driver.name 
