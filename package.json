@@ -1,0 +1,26 @@
+{
+  "name": "ce_9053_wk_7_assignment",
+  "version": "1.0.0",
+  "description": "cs_week_7",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbastien/ce_9053_wk_7_assignment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbastien/ce_9053_wk_7_assignment/issues"
+  },
+  "homepage": "https://github.com/mbastien/ce_9053_wk_7_assignment",
+  "dependencies": {
+    "JSON": "1.0.0",
+    "express": "4.12.3",
+    "jade": "1.9.2",
+    "underscore": "1.8.2"
+  }
+}
