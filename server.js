@@ -31,8 +31,6 @@ app.use(function(req, res, next){
             _data = JSON.parse(dataStream.toString());
             res.locals.data = _data;
             next();
-            // console.log(data);
-            // res.render("things/things", { things : data.things, tabs : tabs, selected : "Things"}); 
         } catch(e) {
             next(e);
         }
@@ -49,20 +47,11 @@ app.get("/", function(req, res){ // request, response
 });
 
 teamsRouter.get("/", function(req, res, next){ // request, response
-    
-    // fs.readFile("data/data.js", function(err, dataStream){
-    //     if(err){
-    //         return next(err);
-    //     };
-        try{
-            // var data = JSON.parse(dataStream.toString());
-            // console.log(data);
-            res.render("teams/teams", { teams : res.locals.data.teams, tabs : tabs, selected : "Teams"}); 
-        } catch(e) {
-            next(e);
-        }
-    // });
-    
+    try{
+        res.render("teams/teams", { teams : res.locals.data.teams, tabs : tabs, selected : "Teams"}); 
+    } catch(e) {
+        next(e);
+    }   
 });
 
 app.use(function(req, res, next){
@@ -74,21 +63,12 @@ teamsRouter.get("/:id", function(req, res){ // request, response
     var team = _.find(res.locals.data.teams, function(team){
         return team._id == req.params.id;
     });
-    // for(var i = 0; i < res.locals.data.things.length; i++){
-    //     if(req.params.id == res.locals.data.things[i].id){
-    //         thing = res.locals.data.things[i];
-    //         break;
-    //     };
-    // };
     res.render("teams/team", { team : team, tabs : tabs, selected : "Teams"});
     
 });
 
 app.get("/drivers", function(req, res){ // request, response
-//    console.log("received request : " + req);
-    //res.send("<html><body><h1>hello world.  rand = " + Math.random() + "</h1></body></html>");
     res.render("drivers/drivers", { drivers : res.locals.data.drivers, tabs : tabs, selected : "Drivers"});
-    
 });
 
 app.get("/drivers/:id", function(req, res){ // request, response
