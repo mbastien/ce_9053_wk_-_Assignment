@@ -1,8 +1,0 @@
-extends ../layout
-block content
-    .container
-        h1 People
-        ul.list-group
-            for thing in things
-                li.list-group-item
-                    a(href="/people/#{thing.id}")= thing.name

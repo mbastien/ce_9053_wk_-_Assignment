@@ -2,4 +2,12 @@ extends ../layout
 block content
     .container
         h1 Team
-        .well= team.name
+        table.table.table-striped
+            thead
+                tr
+                    th Name
+                    th Cars
+            tbody
+            tr
+                td= team.name 
+                td= team.cars

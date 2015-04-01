@@ -1,8 +1,22 @@
 extends ../layout
 block content
     .container
-        h1 Drivers
+        h1 2015 Formula One Drivers
         ul.list-group
             for driver in drivers
                 li.list-group-item
-                    a(href="/drivers/#{driver._id}")= driver.name 
+                    a(href="/drivers/#{driver._id}")= driver.name
+        // table.table.table-striped
+        //     thead
+        //         tr
+        //             th Number
+        //             th Name
+        //             th Team
+        //     tbody
+        //     for driver in drivers
+        //         tr
+        //             td= driver.number
+        //             td 
+        //                 a(href="/drivers/#{driver._id}")= driver.name 
+        //             td= driver.team
+                    

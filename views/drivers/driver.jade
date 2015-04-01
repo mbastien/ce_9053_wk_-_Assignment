@@ -2,4 +2,15 @@ extends ../layout
 block content
     .container
         h1 Driver
-        .well= driver.name
+        table.table.table-striped
+            thead
+                tr
+                    th Number
+                    th Name
+                    th Team
+            tbody
+            tr
+                td= driver.number
+                td= driver.name 
+                td
+                    a(href="/teams/#{driver.teamId}")= driver.team
